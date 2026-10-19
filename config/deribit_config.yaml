@@ -1,0 +1,27 @@
+deribit_api_v2:
+    ws_connection_url: "wss://www.deribit.com/ws/api/v2"
+    https_connection_url: "https://www.deribit.com/api/v2"
+    client_id: "YOUR_DERIBIT_CLIENT_ID"
+    client_secret: "YOUR_DERIBIT_CLIENT_SECRET"
+
+main_coins: ["BTC", "ETH"]
+alt_coins_request_counts_limit: 5
+
+currency_ids:
+    # BTC: 1
+    ETH: 2
+    # SOL: 3
+
+message_ids:
+    ws_auth: 9929
+    establish_heartbeat: 9098
+    heartbeat_response: 8212
+    update_account_info: 2515
+    buy_option: 8888
+    sell_option: 9999
+    # выделяем 99 id под монеты
+    update_option_positions: 1100
+    update_option_instruments: 2200
+    update_option_prices_main_coins: 3300
+    update_option_prices_alt_coins: 4400
+    update_index_price: 5500

@@ -1,0 +1,53 @@
+version: "v5.00d" #"v5.00pc" # TEST
+log_level: "DEBUG" #INFO
+
+volatility_source: "ewm"
+
+option_label:
+    BTC: "BTC"
+    ETH: "ETH"
+    SOL: "SOL_USDC"
+    XRP: "XRP_USDC"
+    BNB: "BNB_USDC"
+
+times: # UTC
+    option_expire_time: "08:00"
+    condor:
+        open_pos_start_time: "08:05"
+        open_pos_end_time: "08:30"
+    history_miner:
+        open_pos_start_time: "08:05"
+        open_pos_end_time: "08:15"
+
+scenarios:
+    ETH:
+        default_direction: "short"
+        fixed_direction: "short"
+        max_short_volatility: 50
+        min_long_volatility: 50
+        strike_step: 25
+        center_strike_to_spot_proximity: 0.4
+        max_center_strike_multiplier: 4 # во сколько раз допускаем увеличение strike_step при волатильности
+        wing_size: 50
+        min_wing_bonus_perc: 0.2 # 2 крыла + 1 раллирование крыла, чтобы выйти в 0 при первом раллировании
+        start_lot: 0.0 # TEST
+        default_lot: 0.0 # TEST
+        # start_lot: 1.0
+        # default_lot: 1.0
+        fixed_lot: true
+        contract_size: 1
+        comission: 0.0003 # в валюте
+
+risk_management:
+    ETH:
+        rolling_limit: 2 # 1 в безубыток и 1 в небольшой убыток, дальше убыток вплоть до wing_size
+        rolling_lot_limit: 5 # предполагается как 1 / min_wing_bonus_perc, но может меняться
+
+paths:
+    log:
+        folder: "logs"
+        runtime_log: "runtime_log_version_timestamp.txt"
+        trading_log: "trading_log_version.txt"
+    mining:
+        folder: "mining"
+        book_summary: "book_summary_version_currency_date.txt"

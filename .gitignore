@@ -1,0 +1,7 @@
+__pycache__/
+
+# Runtime output
+logs/
+mining/
+*.pyc
+.ipynb_checkpoints

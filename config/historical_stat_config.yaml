@@ -1,0 +1,6 @@
+ticker: "CURRENCY-USD"
+period: "1y"
+interval: "1h"
+
+trading_days_per_year: 365
+historical_volatility_window: 3
